@@ -2,6 +2,7 @@ package net.homenet;
 
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Set;
 
 public class Main {
@@ -18,17 +19,25 @@ public class Main {
 
         Set<String> carSet = new HashSet<>();
 
-        //# 1.
+        //# 1.Add
         //for (String car : cars) {
         //    carSet.add(car);
         //}
 
-        //# 2.
+        //# 2.Add
         Collections.addAll(carSet, cars);
 
+        //# 1.Iterator
         for (String car : carSet) {
             System.out.print(car + " ");
         }
+
+        //# 2.Iterator
+        //Iterator<String> iterator = carSet.iterator();
+        //while (iterator.hasNext()) {
+        //    System.out.print(iterator.next() + " ");
+        //}
+
         System.out.println();
         System.out.println("Size=" + carSet.size());
     }
