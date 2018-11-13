@@ -3,6 +3,7 @@ package net.homenet;
 import com.sun.tools.javac.util.List;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Main {
     private ArrayList<ArrayList<Integer>> gradeHeights;
@@ -28,12 +29,17 @@ public class Main {
         ArrayList<Integer> no4Heights = new ArrayList<>(List.of(173, 182, 181));
         ArrayList<Integer> no5Heights = new ArrayList<>(List.of(170, 180, 165, 177, 172));
 
+        //# 1.
+        //gradeHeights = new ArrayList<>();
+        //gradeHeights.add(no1Heights);
+        //gradeHeights.add(no2Heights);
+        //gradeHeights.add(no3Heights);
+        //gradeHeights.add(no4Heights);
+        //gradeHeights.add(no5Heights);
+
+        //# 2.
         gradeHeights = new ArrayList<>();
-        gradeHeights.add(no1Heights);
-        gradeHeights.add(no2Heights);
-        gradeHeights.add(no3Heights);
-        gradeHeights.add(no4Heights);
-        gradeHeights.add(no5Heights);
+        Collections.addAll(gradeHeights, no1Heights, no2Heights, no3Heights, no4Heights, no5Heights);
     }
 
     private void printHeight(int classNo) {
