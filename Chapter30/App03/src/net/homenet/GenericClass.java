@@ -1,5 +1,6 @@
 package net.homenet;
 
+@SuppressWarnings("WeakerAccess")
 public class GenericClass<X> {
     private X value;
     private Object object;
