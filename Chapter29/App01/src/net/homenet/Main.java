@@ -15,7 +15,7 @@ public class Main {
 
     private void runServerSocket() {
         ServerSocket server = null;
-        Socket client = null;
+        Socket client;
 
         try {
             server = new ServerSocket(9999);
@@ -27,7 +27,7 @@ public class Main {
                 InputStream stream = client.getInputStream();
                 BufferedReader reader = new BufferedReader(new InputStreamReader(stream));
 
-                String data = null;
+                String data;
                 StringBuilder receivedData = new StringBuilder();
                 while ((data = reader.readLine()) != null) {
                     receivedData.append(data);
