@@ -2,31 +2,32 @@ package net.homenet;
 
 import java.io.IOException;
 import java.nio.charset.Charset;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardOpenOption;
+import java.nio.file.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 public class Main {
+    private static final String FILE_NAME = "AboutThisBook.txt";
+
     public static void main(String[] args) {
         Main app = new Main();
 
-        app.runFilesSamples();
+        Path path = app.runFilesSample();
+        app.runFileCopyMoveDeleteSample(path);
     }
 
-    private void runFilesSamples() {
-        String fileName = "AboutThisBook.txt";
-        Path path = Paths.get(fileName);
+    private Path runFilesSample() {
+        Path path = Paths.get(FILE_NAME);
+        Path resPath = null;
         try {
-            Path resPath = writeFile(path);
+            resPath = writeFile(path);
             System.out.println("============== Created file contents ==============");
             readFile(resPath);
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return resPath;
     }
 
     private List<String> getContents() {
@@ -55,5 +56,35 @@ public class Main {
             System.out.println(line);
         }
         System.out.println();
+    }
+
+    private void runFileCopyMoveDeleteSample(Path fromPath) {
+        Path toPath = fromPath.toAbsolutePath().getParent();
+        Path copyPath = toPath.resolve("copied");
+
+        try {
+            //# Make a directory if it's not exists
+            if (!Files.exists(copyPath, LinkOption.NOFOLLOW_LINKS)) {
+                Files.createDirectories(copyPath);
+            }
+
+            //# Copy
+            Path copiedFilePath = copyPath.resolve(FILE_NAME);
+            StandardCopyOption option = StandardCopyOption.REPLACE_EXISTING;
+            Files.copy(fromPath, copiedFilePath, option);
+
+            //# Read
+            System.out.println("========== Copied file contents ==========");
+            readFile(copiedFilePath);
+
+            //# Move
+            Path movedFilePath = Files.move(copiedFilePath, copyPath.resolve("move.txt"), option);
+
+            //# Delete
+            Files.delete(movedFilePath);
+            Files.delete(copyPath);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
