@@ -1,6 +1,5 @@
 package net.homenet;
 
-import java.time.temporal.Temporal;
 import java.util.function.Predicate;
 
 public class Main {
