@@ -18,6 +18,11 @@ public class Main {
     private void runMapMethodSample1() {
         List<Integer> integers = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
         integers.stream().map(integer -> integer * 3).forEach(System.out::println);
+
+        int sum = integers.stream()
+            .mapToInt(integer -> integer * 3)
+            .sum();
+        System.out.println("Sum = " + sum);
     }
 
     private void runMapMethodSample2() {
