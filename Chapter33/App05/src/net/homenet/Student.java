@@ -1,5 +1,6 @@
 package net.homenet;
 
+@SuppressWarnings({"WeakerAccess", "unused"})
 public class Student {
     private String name;
     private int age;
